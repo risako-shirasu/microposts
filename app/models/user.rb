@@ -49,7 +49,7 @@ class User < ApplicationRecord
     favorite.destroy if favorite
   end
 
-  def approving?(other_user)
-    self.approvings.include?(other_user)
+  def favorites?(other_user)
+    self.favorites.include?(other_user)
   end
 end

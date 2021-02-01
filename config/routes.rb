@@ -10,8 +10,12 @@ Rails.application.routes.draw do
     member do
       get :followings
       get :followers
-      get :approvings
-      get :approvers
+    end
+  end
+  
+  resources :users, only: [:index, :show, :new, :create] do
+    member do
+      get :likes
     end
   end
 
