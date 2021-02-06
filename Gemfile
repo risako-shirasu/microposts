@@ -58,3 +58,5 @@ group :production do
 end
 
 gem 'carrierwave'
+
+gem 'mini_magick'

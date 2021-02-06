@@ -16,6 +16,7 @@ class User < ApplicationRecord
   has_many :favorites
   has_many :likes, through: :favorites, source: :micropost #お気に入り(approve)しているmicrosopostたち
   #has_many :reverses_of_favorite, class_name: 'Favorite', foreign_key: 'micropost_id'
+  mount_uploader :image, ImageUploader
   
   def follow(other_user)
     unless self == other_user

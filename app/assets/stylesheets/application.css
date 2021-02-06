@@ -13,3 +13,10 @@
  *= require_tree .
  *= require_self
  */
+.avatar{ 
+  width: 50px;
+}
+
+.avater_usershow{
+  width: 500px;
+}

@@ -5,11 +5,11 @@
         <h3 class="card-title"><%= @user.name %></h3>
       </div>
       <div class="card-body">
-        <% if @user.image? %> <%#うまくできん　%>
-          <%= image_tag @user.image.url %>
+        <% if @user.image? %>
+          <%= image_tag @user.image.url, class: "rounded img-fluid avater_usershow"   %>
         <% else %>
-           <img class="rounded img-fluid" src="<%= gravatar_url(@user, { size: 500 }) %>" alt="">
-        <% end %>　<%#うまくできん　%>
+          <img class="rounded img-fluid" src="<%= gravatar_url(@user, { size: 500 }) %>" alt="">
+        <% end %>
       </div>
     </div>
     <%= render 'relationships/follow_button', user: @user %>

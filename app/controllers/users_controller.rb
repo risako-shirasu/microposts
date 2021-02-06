@@ -46,6 +46,9 @@ class UsersController < ApplicationController
     counts(@user)
   end
 
+  def edit
+    @user = User.find(params[:id])
+  end
 
   private
 
