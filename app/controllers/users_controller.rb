@@ -54,6 +54,8 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update_attributes(user_params)
+        flash[:success] = 'Message は正常に更新されました'
+        redirect_to user_path
       # 更新に成功したときの処理
     else
       render 'edit'

@@ -8,6 +8,7 @@
         </div>
         <div>
           <p><%= micropost.content %></p>
+          <p><%= image_tag @micropost.image.url if @micropost.image? %></p>
         </div>
         <div class="row">
           <% if current_user == micropost.user %>

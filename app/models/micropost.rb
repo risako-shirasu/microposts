@@ -8,7 +8,5 @@ class Micropost < ApplicationRecord
   #has_many :reverses_of_favorite, class_name: 'Favorite', foreign_key: 'micropost_id'
   #has_many :approvers, through: :reverses_of_favorite, source: :micropost
 
-  #def liked_by?(user) 
-    #Favorite.where(user_id: self.likes_ids + [self.id])
-  #end
+  mount_uploader :image, ImageUploader
 end
