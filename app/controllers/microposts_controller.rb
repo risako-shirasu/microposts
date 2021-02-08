@@ -25,6 +25,13 @@ class MicropostsController < ApplicationController
     @likes = @micropost.likes.page(params[:page])
     counts(@micropost)
   end
+  
+  def search
+    #Viewのformで取得したパラメータをモデルに渡す
+    #@microposts = Micropost.search(params[:search])
+    @micropost = Micropost.find(params[:id])
+    @search = @micropost.search(params[:search])
+  end
 
   private
 

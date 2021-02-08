@@ -9,4 +9,10 @@ class Micropost < ApplicationRecord
   #has_many :approvers, through: :reverses_of_favorite, source: :micropost
 
   mount_uploader :image, ImageUploader
+  
+  def self.search(search)
+    return Micropost.all unless search
+    Micropost.where(['content LIKE ?', "%#{search}%"])
+  end
+  
 end
