@@ -28,9 +28,12 @@ class MicropostsController < ApplicationController
   
   def search
     #Viewのformで取得したパラメータをモデルに渡す
-    #@microposts = Micropost.search(params[:search])
-    @micropost = Micropost.find(params[:id])
-    @search = @micropost.search(params[:search])
+    #@microposts = Micropost.search(params[:content][:search])
+    #@micropost = Micropost.find(params[:id])
+    #@search = @micropost.search(params[:search])
+    @micropost  = current_user.microposts.build
+    # 検索拡張機能として.search(params[:search])を追加 
+    @feed_items = current_user.feed.paginate(page: params[:page]).search(params[:search])
   end
 
   private

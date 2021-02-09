@@ -51,4 +51,5 @@ class User < ApplicationRecord
   def favorites?(micropost)
     self.likes.include?(micropost)
   end
+  
 end
