@@ -27,13 +27,20 @@ class MicropostsController < ApplicationController
   end
   
   def search
-    #Viewのformで取得したパラメータをモデルに渡す
-    #@microposts = Micropost.search(params[:content][:search])
-    #@micropost = Micropost.find(params[:id])
-    #@search = @micropost.search(params[:search])
     @micropost  = current_user.microposts.build
     # 検索拡張機能として.search(params[:search])を追加 
-    @feed_items = current_user.feed.paginate(page: params[:page]).search(params[:search])
+    keyword = params[:search]
+    puts "ここをみろ"
+    puts keyword
+    #Toppage#indexの<%= render 'microposts/microposts', microposts: 「@microposts」 %>　↓ページネーションも.pagenateにしない！
+    @microposts = Micropost.where(['content LIKE ?', "%#{keyword}%"]).page(params[:page])
+    render 'toppages/index'
+  end
+  
+  def show
+    @comment = Comment.new #新規コメント用
+    @micropost = Micropost.find(params[:id])
+    @comments = micorpost.comments #コメント表示用投稿に関連づくコメントの取得
   end
 
   private

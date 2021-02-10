@@ -7,6 +7,8 @@ Rails.application.routes.draw do
 
   get 'signup', to: 'users#new'
   
+  get 'search', to: 'microposts#search'
+  
   resources :users, only: [:index, :show, :new, :create, :edit, :update] do
     
     member do
@@ -25,3 +27,9 @@ Rails.application.routes.draw do
   resources :relationships, only: [:create, :destroy]
   resources :favorites, only: [:create, :destroy]
   end
+
+ #resources :users, only: [:index, :show, :new, :create] do
+    #member do
+      #get :comments
+    #end
+  #end

@@ -1,9 +1,9 @@
 <% provide(:search_name, 'content search') %>
 <% provide(:path, root_path) %>
 
-<%= form_tag root_path, :method => 'get' do %>
+<%= form_tag search_path, :method => 'get' do %> <%# search_pathはconfigの設定による。rails routesでアクションの実行を確認 %>
   <p>
-    <%= text_field_tag :search, params[:search] %>
+    <%= text_field_tag :search, params[:search] %>　<%#params[:search]の:searchはmicropost.rbで定義したsearchメソッド %>
     <%= submit_tag "Search", :content => nil %>
   </p>
 <% end %>
@@ -29,5 +29,20 @@
       </div>
     </li>
   <% end %>
-  <%= paginate microposts %>
+  <%#= paginate microposts %>
+    <%# @comments.each do |comment| %>
+    <%#= comment.user.name %>
+    <%#= comment.content %>
+    <%# end %>
 </ul>
+
+<%#= form_with model: [@micropost, @comment], local: true do |f| %>
+  <%#= render 'shared/error_messages', object: f.object %>
+
+    <%#div class = 'form-group'>
+      <%= f.text_area :content, class: 'form-control',　id:'content'\
+         placeholder: "コメントを記入してください" %>
+    </div>
+
+    <%#= f.submit "コメントする", class: "btn btn-primary" %>
+<%# end %>

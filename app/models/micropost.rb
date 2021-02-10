@@ -1,5 +1,6 @@
 class Micropost < ApplicationRecord
   belongs_to :user
+  has_many :comments, through: :comments, source: :user, dependent: :destroy
   
   validates :content, presence: true, length: { maximum: 255 }
   
