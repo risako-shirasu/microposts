@@ -1,6 +1,5 @@
 class Micropost < ApplicationRecord
   belongs_to :user
-  has_many :comments, through: :comments, source: :user, dependent: :destroy
   
   validates :content, presence: true, length: { maximum: 255 }
   
@@ -10,6 +9,8 @@ class Micropost < ApplicationRecord
   #has_many :approvers, through: :reverses_of_favorite, source: :micropost
 
   mount_uploader :image, ImageUploader
+  
+  has_many :comments, through: :comments, source: :user, dependent: :destroy
   
   def self.search(search)
     return Micropost.all unless search

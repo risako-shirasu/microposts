@@ -37,9 +37,9 @@ class MicropostsController < ApplicationController
     render 'toppages/index'
   end
   
-  def show
-    @comment = Comment.new #新規コメント用
+  def comments
     @micropost = Micropost.find(params[:id])
+    @comment = Comment.new #新規コメント用
     @comments = micorpost.comments #コメント表示用投稿に関連づくコメントの取得
   end
 

@@ -26,10 +26,6 @@ Rails.application.routes.draw do
   resources :microposts, only: [:create, :destroy]
   resources :relationships, only: [:create, :destroy]
   resources :favorites, only: [:create, :destroy]
+  resources :comments, only: [:create, :destroy]
   end
 
- #resources :users, only: [:index, :show, :new, :create] do
-    #member do
-      #get :comments
-    #end
-  #end

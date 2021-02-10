@@ -7,7 +7,6 @@ class User < ApplicationRecord
   has_secure_password
   
   has_many :microposts, dependent: :destroy
-  has_many :comments, through: :comments, source: :micropost, dependent: :destroy
   
   has_many :relationships
   has_many :followings, through: :relationships, source: :follow
@@ -17,6 +16,8 @@ class User < ApplicationRecord
   has_many :favorites
   has_many :likes, through: :favorites, source: :micropost 
   mount_uploader :image, ImageUploader
+  
+  has_many :comments, through: :comments, source: :micropost, dependent: :destroy
   
   
   
