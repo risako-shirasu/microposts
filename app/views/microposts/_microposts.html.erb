@@ -23,17 +23,9 @@
         <div class="row">
           <% if current_user == micropost.user %>
             <%= link_to "Delete", micropost, method: :delete, data: { confirm: "You sure?" }, class: "btn btn-danger btn-sm" %>
-          <% end %>
             <%= render "favorites/favorite_button", micropost: micropost %>
             <%#= render "comments/comment_button", micropost: @comment %>
-        </div>
-          <%= form_with model: [@micropost, @comment], local: true do |f| %>
-            <div class="form-group">
-              <%= f.text_area :content, class: 'form-control', rows: 5 %>
-            </div>
-              <%= f.submit 'Post', class: 'btn btn-primary btn-block' %>
+            <%= render 'comments/comment_button', micropost: micropost %>
           <% end %>
-      </div>
     </li>
   <% end %>
-

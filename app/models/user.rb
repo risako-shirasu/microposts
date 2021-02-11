@@ -55,4 +55,5 @@ class User < ApplicationRecord
     self.likes.include?(micropost)
   end
   
+  
 end
