@@ -20,11 +20,20 @@
           <p><%= micropost.content %></p>
           <p><%= image_tag micropost.image.thumb.url if micropost.image? %></p>
         </div>
+        <div> <%#コメント表示部分の追加 %>
+          <% @comments.each do |comment| %>
+          <p><%= comment.user.name %></p>
+          <p><%= comment.content %></p>
+          <% end %>
+        </div>
         <div class="row">
           <% if current_user == micropost.user %>
             <%= link_to "Delete", micropost, method: :delete, data: { confirm: "You sure?" }, class: "btn btn-danger btn-sm" %>
             <%= render "favorites/favorite_button", micropost: micropost %>
-            <%= render 'comments/comment_button' %>
           <% end %>
+        <div>
+          
+        <div class = 'comment_form'>
+           <%= render 'comments/comment_button' %>
     </li>
   <% end %>

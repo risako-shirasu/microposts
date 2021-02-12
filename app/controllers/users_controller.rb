@@ -8,8 +8,9 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @microposts = @user.microposts.order(id: :desc).page(params[:page]).search(params[:search])
+    @microposts = @user.microposts.order(id: :desc).search(params[:search]).page(params[:page])
     counts(@user)
+    @comments = @user.comments.order(id: :desc).page(params[:page])
   end
 
   def new
@@ -60,6 +61,11 @@ class UsersController < ApplicationController
     else
       render 'edit'
     end
+  end
+  
+  def reactions
+    @user = User.find(params[:id])
+    @reactions = @user.reactions.order(id: :desc).page(params[:page]).per(25)
   end
 
   private

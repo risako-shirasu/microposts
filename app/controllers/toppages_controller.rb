@@ -5,7 +5,8 @@ class ToppagesController < ApplicationController
       @microposts = current_user.feed_microposts.order(id: :desc).page(params[:page])
       #@likes = current_user.liked_by?.order(id: :desc).page(params[:page])
       #@comments = @micropots.comments.includes(:user).all
-      @comment  = @microposts.comments.build(user_id: current_user.id) if current_user
+      @comment = current_user.comments.build
+      @comments= current_user.comments.order(id: :desc).page(params[:page])
     end
   end
   

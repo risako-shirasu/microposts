@@ -56,5 +56,8 @@ class User < ApplicationRecord
     self.likes.include?(micropost)
   end
   
+  def comment(micropost)
+    self.comments.find_or_create_by(micropost_id: micropost.id)
+  end
   
 end
