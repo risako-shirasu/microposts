@@ -15,6 +15,7 @@ class User < ApplicationRecord
   
   has_many :favorites
   has_many :likes, through: :favorites, source: :micropost 
+  
   mount_uploader :image, ImageUploader
   
   has_many :comments
