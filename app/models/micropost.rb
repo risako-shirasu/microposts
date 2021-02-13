@@ -9,7 +9,9 @@ class Micropost < ApplicationRecord
 
   mount_uploader :image, ImageUploader
   
-  has_many :comments, through: :comments, source: :user, dependent: :destroy
+  has_many :comments
+  has_many :comments_users, through: :comments, source: :user, dependent: :destroy
+  #↑投稿にコメントした人たちの一覧
   
   def self.search(search)
     return Micropost.all unless search

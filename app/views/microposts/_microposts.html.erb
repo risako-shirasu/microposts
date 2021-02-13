@@ -11,7 +11,11 @@
 <ul class="list-unstyled">
   <% microposts.each do |micropost| %>
     <li class="media mb-3">
-      <img class="mr-2 rounded" src="<%= gravatar_url(micropost.user, { size: 50 }) %>" alt="">
+        <% if micropost.user.image? %>
+          <%= image_tag micropost.user.image.url, class: "mr-2 rounded avatar" %>
+        <% else %>
+          <img class="mr-2 rounded" src="<%= gravatar_url(micropost.user, { size: 50 }) %>" alt="">
+        <% end %>
       <div class="media-body">
         <div>
           <%= link_to micropost.user.name, user_path(micropost.user) %> <span class="text-muted">posted at <%= micropost.created_at %></span>
@@ -20,20 +24,23 @@
           <p><%= micropost.content %></p>
           <p><%= image_tag micropost.image.thumb.url if micropost.image? %></p>
         </div>
-        <div> <%#コメント表示部分の追加 %>
-          <% @comments.each do |comment| %>
-          <p><%= comment.user.name %></p>
-          <p><%= comment.content %></p>
-          <% end %>
-        </div>
+          <% micropost.comments.each do |comment| %>　<%#←各投稿から取り出す　%>
+            <div>
+              <strong><%= comment.user.name %></strong>
+              <br />
+              <p><%= comment.body %></p>
+            </div>
+          <% end %> 
+        
         <div class="row">
           <% if current_user == micropost.user %>
             <%= link_to "Delete", micropost, method: :delete, data: { confirm: "You sure?" }, class: "btn btn-danger btn-sm" %>
             <%= render "favorites/favorite_button", micropost: micropost %>
           <% end %>
-        <div>
+        </div>
           
         <div class = 'comment_form'>
-           <%= render 'comments/comment_button' %>
+           <%= render 'comments/comment_button', comment: @comment %>
+        </div>   
     </li>
   <% end %>

@@ -3,13 +3,13 @@ class CommentsController < ApplicationController
 
   def create 
     @comment = current_user.comments.build(comment_params)
-    @comment.micropost_id = params[:micropost_id]
+    @micropost = Micropost.find(params[:id])
     if @comment.save
       flash[:success] = "コメントしました"
-      redirect_back(fallback_location: root_path)
+      redirect_to root_url
     else
       flash[:success] = "コメントできませんでした"
-      redirect_back(fallback_location: root_path)
+      render 'toppages/index'
     end
   end
 
@@ -19,3 +19,5 @@ class CommentsController < ApplicationController
       params.require(:comment).permit(:content)
   end
 end
+
+
