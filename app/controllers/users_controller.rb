@@ -10,7 +10,8 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @microposts = @user.microposts.order(id: :desc).search(params[:search]).page(params[:page])
     counts(@user)
-    @comments = @user.comments.order(id: :desc).page(params[:page]) #←comments表示用
+    @comment = current_user.comments.build
+    #@comments = @user.comments.order(id: :desc).page(params[:page]) #←comments表示用
     #@comment.micropost_id = params[:micropost_id]　←いる？？(render時にパーシャル呼び出しているので不要)
   end
 
