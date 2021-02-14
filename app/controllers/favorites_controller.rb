@@ -5,4 +5,4 @@ class FavoritesController < ApplicationController
     flash[:success] = 'お気に入りに追加しました。'
     redirect_back(fallback_location: root_path)
   end
-
+end

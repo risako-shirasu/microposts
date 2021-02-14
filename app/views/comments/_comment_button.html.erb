@@ -1,6 +1,15 @@
 <div class="border p-3">
     <%= form_with(model: @comment, local: true) do |f| %>
-      <%= hidden_field_tag :micropost_id, micropost.id %>
+    <%#= hidden_field_tag :micropost_id, micropost.id %>
+      <% if @comment.errors.any? %>
+        <div id="error_explanation">
+          <ul>
+            <% @comment.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
       <div class="form-group">
         <%= f.text_area :content, class: 'form-control', rows: 1 %>
       </div>
