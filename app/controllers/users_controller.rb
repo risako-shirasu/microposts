@@ -11,6 +11,7 @@ class UsersController < ApplicationController
     @microposts = @user.microposts.order(id: :desc).search(params[:search]).page(params[:page])
     counts(@user)
     @comments = @user.comments.order(id: :desc).page(params[:page])
+    #@comment.micropost_id = params[:micropost_id]　←いる？？
   end
 
   def new

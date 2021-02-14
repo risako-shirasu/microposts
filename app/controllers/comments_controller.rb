@@ -7,7 +7,7 @@ class CommentsController < ApplicationController
     #@micropost.micropost_id = Micropost.find(params[:micropost_id])
     if @comment.save
       flash[:success] = "コメントしました"
-      redirect_back(fallback_location: root_path)
+      redirect_to root_path
     else
       flash[:success] = "コメントできませんでした"
       render 'toppages/index'
