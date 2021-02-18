@@ -28,6 +28,7 @@ class MicropostsController < ApplicationController
   
   def search
     @micropost  = current_user.microposts.build
+    @comment = current_user.comments.build
     # 検索拡張機能として.search(params[:search])を追加 
     keyword = params[:search]
     puts "ここをみろ"
