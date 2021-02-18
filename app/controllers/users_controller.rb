@@ -48,6 +48,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @likes = @user.likes.order(id: :desc).page(params[:page])
     counts(@user)
+    @comment = current_user.comments.build
   end
 
   def edit
